@@ -1,0 +1,81 @@
+﻿@model lukegriffithBlog.Models.Posts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Posts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.urlSlug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.urlSlug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.body)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.published)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timePosted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timePosted)
+        </dd>
+        
+        <div class="col-lg-12">
+            @foreach (var category in Model.category)
+            {
+                @Html.DisplayFor(model => category.title)
+            }
+        </div>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
