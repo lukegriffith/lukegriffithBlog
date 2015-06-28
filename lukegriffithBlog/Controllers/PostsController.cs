@@ -17,12 +17,14 @@ namespace lukegriffithBlog.Controllers
         private lukegriffithBlogContext db = new lukegriffithBlogContext();
 
         // GET: Posts
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Posts.ToList());
         }
 
         // GET: Posts/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize]
         public ActionResult Create()
         {
             var posts = new Posts();
@@ -52,6 +55,7 @@ namespace lukegriffithBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "id,title,urlSlug,subTitle,body,published,dateCreated,timePosted")] Posts posts, string[] linkedCategories)
         {
 
@@ -78,6 +82,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +108,7 @@ namespace lukegriffithBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(int id, string[] selectedCategories)
         {
             if (id == null)
@@ -169,6 +175,7 @@ namespace lukegriffithBlog.Controllers
 
 
         // GET: Posts/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -186,6 +193,7 @@ namespace lukegriffithBlog.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Posts posts = db.Posts.Find(id);

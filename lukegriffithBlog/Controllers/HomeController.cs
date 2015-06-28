@@ -22,7 +22,7 @@ namespace lukegriffithBlog.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Luke M. Griffith";
 
             return View();
         }

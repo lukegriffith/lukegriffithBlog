@@ -15,6 +15,7 @@ namespace lukegriffithBlog.Controllers
         private lukegriffithBlogContext db = new lukegriffithBlogContext();
 
         // GET: Categories
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Category.ToList());
@@ -36,6 +37,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +46,7 @@ namespace lukegriffithBlog.Controllers
         // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,title,dateCreated")] Category category)
@@ -60,6 +63,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         // GET: Categories/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +83,7 @@ namespace lukegriffithBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "id,title,dateCreated")] Category category)
         {
             if (ModelState.IsValid)
@@ -91,6 +96,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +114,7 @@ namespace lukegriffithBlog.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Category category = db.Category.Find(id);
