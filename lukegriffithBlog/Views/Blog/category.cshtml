@@ -1,0 +1,29 @@
+﻿@model IEnumerable<lukegriffithBlog.Models.Posts>
+
+@{
+    ViewBag.Title = @ViewBag.category;
+}
+
+<h2>@ViewBag.category</h2>
+
+@foreach (var item in Model)
+{
+    <div class="panel-heading"><h1><a href="Post/@item.id/@item.urlSlug">@item.title</a></h1><h1><small>@item.subTitle</small></h1></div>
+    <div class="col-lg-12">
+
+        <div>
+            @Html.ActionLink("Read More..", "Post", new { id = string.Format("{0}/{1}", item.id, item.urlSlug) })
+        </div>
+
+        <div>
+            <strong>categories: </strong>
+            @foreach (var category in item.category)
+            {
+                @Html.ActionLink(@category.title, "category", new { id = category.id }, new { @class = "btn btn-xs btn-default" })
+                
+
+            }
+        </div>
+        
+    </div>
+}

@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201506262307446_mig3.Designer.cs">
       <DependentUpon>201506262307446_mig3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506281924581_mig4.cs" />
+    <Compile Include="Migrations\201506281924581_mig4.Designer.cs">
+      <DependentUpon>201506281924581_mig4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -285,6 +289,8 @@
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Blog\category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506262307446_mig3.resx">
       <DependentUpon>201506262307446_mig3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506281924581_mig4.resx">
+      <DependentUpon>201506281924581_mig4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

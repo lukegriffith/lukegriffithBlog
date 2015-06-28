@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using lukegriffithBlog.Models;
 using lukegriffithBlog.ViewModels;
+using System.Data.Entity.Infrastructure;
 
 namespace lukegriffithBlog.Controllers
 {
@@ -100,19 +101,72 @@ namespace lukegriffithBlog.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,title,urlSlug,subTitle,body,published,dateCreated,timePosted")] Posts posts)
+        public ActionResult Edit(int id, string[] selectedCategories)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                posts.urlSlug = posts.title.Replace(" ", "-").ToString();
-                db.Entry(posts).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(posts);
+            var postToUpdate = db.Posts
+                .Include(i => i.category)
+                .Where(i => i.id == id)
+                .Single();
+
+            if (TryUpdateModel(postToUpdate, "",
+                new string[] { "title", "subTitle", "body", "published", "dateCreated", "timePosted" }))
+            {
+                try
+                {
+                    updateCategories(selectedCategories, postToUpdate);
+                    postToUpdate.urlSlug = postToUpdate.title.Replace(" ", "-").ToString();
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                    
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changed. Try again");
+                }
+
+            }
+            PopulateCategories(postToUpdate);
+            return View(postToUpdate);
         }
+
+        public void updateCategories(string[] selectedCategories, Posts postToUpdate)
+        {
+            if (selectedCategories == null)
+            {
+                postToUpdate.category = new List<Category>();
+                return;
+            }
+
+            var hsSelectedCategories = new HashSet<string>(selectedCategories);
+            var postCategory = new HashSet<int>
+                (postToUpdate.category.Select(i => i.id));
+            foreach ( var category in db.Category)
+            {
+                if (hsSelectedCategories.Contains(category.id.ToString()))
+                {
+                    if (!postCategory.Contains(category.id))
+                    {
+                        postToUpdate.category.Add(category);
+                    }
+                }
+                else
+                {
+                    if (postCategory.Contains(category.id))
+                    {
+                        postToUpdate.category.Remove(category);
+                    }
+                }
+            }
+
+        }
+
+
 
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
