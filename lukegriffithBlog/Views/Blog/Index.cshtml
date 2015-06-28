@@ -1,0 +1,33 @@
+﻿@model IEnumerable<lukegriffithBlog.Models.Posts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        
+        @foreach (var item in Model)
+        {
+            <div class="panel-heading"><h1>@item.title</h1><h1><small>@item.subTitle</small></h1></div>
+            <div class="col-lg-5">
+                <div class="btn-group btn-group-xs" role="group">
+                    @foreach (var category in item.category)
+                    {
+                        <a>@category.title </a>
+
+                    }
+                </div>
+            </div>
+        }
+    
+    </div>
+</body>
+</html>
