@@ -21,6 +21,7 @@ namespace lukegriffithBlog.Models
         public string subTitle { get; set; }
         [Display(Name = "Content")]
         [AllowHtml]
+        [MinLength(100)]
         public string body { get; set; }
         public bool published { get; set; }
         [DataType(DataType.Date)]

@@ -16,21 +16,24 @@
         
         @foreach (var item in Model)
         {
-            <div class="panel-heading"><h1>@item.title</h1><h1><small>@item.subTitle</small></h1></div>
             <div class="col-lg-12">
-
-    
+                <div class="panel-heading"><h1>@Html.ActionLink(@item.title, "Post", new { id = string.Format("{0}/{1}", item.id, item.urlSlug) })</h1><h1><small>@item.subTitle</small></h1></div>
+                
+                <div class="well">
+                    @Html.Raw(item.body)
+                </div>
 
                 <div role="group">
                     <strong>categories: </strong>
                     @foreach (var category in item.category)
                     {
                         @Html.ActionLink(@category.title, "category", new { id = category.id }, new { @class = "btn btn-xs btn-default" })
+                        
 
                     }
                 </div>
                 <div>
-                    @Html.ActionLink("Read More..", "Post", new { id = string.Format("{0}/{1}", item.id, item.urlSlug) })
+                    
                 </div>
             </div>
         }
