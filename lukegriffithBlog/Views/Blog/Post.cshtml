@@ -6,10 +6,11 @@
 
 
 <div class="page-header">
-    <h1> @Html.DisplayFor(model => Model.title) </h1>
-    <h1><small>@Html.DisplayFor(model => Model.subTitle)</small></h1>
+    <h3> @Html.DisplayFor(model => Model.title) </h3>
+    <h3><small>@Html.DisplayFor(model => Model.subTitle)</small></h3>
 </div>
 
+<strong><p>@Model.timePosted.ToShortDateString()</p></strong>
 <div class="col-lg-12 well">
     @Html.Raw(Model.body)
 </div>

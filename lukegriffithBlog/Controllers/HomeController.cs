@@ -15,7 +15,7 @@ namespace lukegriffithBlog.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Whats this all about?";
 
             return View();
         }

@@ -22,7 +22,9 @@ namespace lukegriffithBlog.Controllers
         // GET: Blog
         public ActionResult Index()
         {
+            //var posts = db.Posts.OrderByDescending(i => i.dateCreated);
             var posts = db.Posts;
+            
             return View(posts);
         }
 
