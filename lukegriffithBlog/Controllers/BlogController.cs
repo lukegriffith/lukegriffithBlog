@@ -22,8 +22,8 @@ namespace lukegriffithBlog.Controllers
         // GET: Blog
         public ActionResult Index()
         {
-            //var posts = db.Posts.OrderByDescending(i => i.dateCreated);
-            var posts = db.Posts;
+            var posts = db.Posts.OrderByDescending(i => i.dateCreated).Where(i => i.published == true);
+            //var posts = db.Posts;
             
             return View(posts);
         }
@@ -44,7 +44,7 @@ namespace lukegriffithBlog.Controllers
 
         public ActionResult category(int id)
         {
-            var posts = db.Category.Find(id).posts;
+            var posts = db.Category.Find(id).posts.Where(i => i.published == true).OrderByDescending(i => i.dateCreated);
             ViewBag.category = db.Category.Find(id).title.ToString();
             return View(posts);
         }

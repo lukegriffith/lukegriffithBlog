@@ -4,30 +4,33 @@
     ViewBag.Title = @ViewBag.category;
 }
 
-<h2>@ViewBag.category</h2>
-
+<div class="page-header">
+    <h2>@ViewBag.category</h2>
+</div>
 @foreach (var item in Model)
 {
 
-    
-    <div class="col-lg-12">
-        <div class="page-header"><h3>@item.title</h3><h3><small>@item.subTitle</small></h3></div> 
-        <strong><p>@item.timePosted.ToShortDateString()</p></strong>
-        <div class="well">
-            @Html.Raw(item.body)
+    <div class="panel panel-default">
+        <div class="panel panel-heading">
+            <div class="text-primary">
+                <h3> @Html.DisplayFor(model => item.title) </h3>
+            </div>
+                @Html.DisplayFor(model => item.subTitle)
+             <div class="text-right"> @item.timePosted.ToShortDateString() </div>
         </div>
 
-        
+        <div class="panel-body">
+             @Html.Raw(item.body)
+        </div>
 
-        <div>
-            <strong>categories: </strong>
+        <div class="panel-footer">
+            Categories:
             @foreach (var category in item.category)
             {
-                @Html.ActionLink(@category.title, "category", new { id = category.id }, new { @class = "btn btn-xs btn-default" })
-                
-
+                @Html.ActionLink(@category.title, "category", new { id = category.id }, new { @class = "btn btn-xs btn-primary" })
             }
         </div>
-        
+
     </div>
+
 }
