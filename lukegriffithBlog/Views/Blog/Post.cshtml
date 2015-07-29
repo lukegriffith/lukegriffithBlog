@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = Model.title;
 }
-<div class="page-header">
-    <h3> @Html.DisplayFor(model => Model.title) </h3>
-    @Html.DisplayFor(model => Model.subTitle)  -  @Model.timePosted.ToShortDateString()
-</div>
+
 
 <div class="panel panel-default">
     
+    <div class="panel panel-heading">
+        <div class="text-primary">
+            <h3> @Html.DisplayFor(model => Model.title) </h3>
+        </div>
+            @Html.DisplayFor(model => Model.subTitle)
+            <div class="text-right"> @Model.timePosted.ToString("dd/MM/yyyy") </div>
+        </div>
+
     <div class="panel-body">
 
         

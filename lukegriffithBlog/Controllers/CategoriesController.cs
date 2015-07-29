@@ -88,6 +88,7 @@ namespace lukegriffithBlog.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.dateCreated = System.DateTime.Now;
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

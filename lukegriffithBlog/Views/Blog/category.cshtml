@@ -16,7 +16,7 @@
                 <h3> @Html.DisplayFor(model => item.title) </h3>
             </div>
                 @Html.DisplayFor(model => item.subTitle)
-             <div class="text-right"> @item.timePosted.ToShortDateString() </div>
+             <div class="text-right"> @item.timePosted.ToString("dd/MM/yyyy") </div>
         </div>
 
         <div class="panel-body">

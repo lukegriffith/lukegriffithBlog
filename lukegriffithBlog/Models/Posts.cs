@@ -22,6 +22,7 @@ namespace lukegriffithBlog.Models
         [Display(Name = "Content")]
         [AllowHtml]
         [MinLength(100)]
+        [DataType(DataType.MultilineText)]
         public string body { get; set; }
         public bool published { get; set; }
         [DataType(DataType.Date)]

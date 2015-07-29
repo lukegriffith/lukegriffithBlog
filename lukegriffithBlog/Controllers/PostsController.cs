@@ -127,6 +127,8 @@ namespace lukegriffithBlog.Controllers
                 {
                     updateCategories(selectedCategories, postToUpdate);
                     postToUpdate.urlSlug = postToUpdate.title.Replace(" ", "-").ToString();
+                    postToUpdate.dateCreated = System.DateTime.Now;
+                    postToUpdate.timePosted = System.DateTime.Now;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                     
