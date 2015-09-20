@@ -31,7 +31,13 @@ namespace lukegriffithBlog.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            // var proc = db.Database.SqlQuery<comments>(string.Format("EXEC GetBlogComments {0}", id));   CALLING THE SPROC FAILS 
+            ;
+            
             Posts posts = db.Posts.Find(id);
+
+            
             PopulateCategories(posts);
             if (posts == null)
             {

@@ -217,6 +217,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\comments.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\lukegriffithBlogContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
