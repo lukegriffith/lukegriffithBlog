@@ -135,7 +135,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         
-         GET: /Account/Register
+        // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -173,7 +173,7 @@ namespace lukegriffithBlog.Controllers
         }
 
         
-         GET: /Account/ConfirmEmail
+        // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
